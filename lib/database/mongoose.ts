@@ -21,6 +21,8 @@ export const connectToDatabase = async () => {
 
     if (!MONGODB_URL) throw new Error("Mongdb url missing")
 
-    cached.promise = cached.promise || mongoose.connect(MONGODB_URL, { dbName: 'ImagineFusionAI', bufferCommands: false })
-
+    cached.promise = cached.promise ||
+        mongoose.connect(MONGODB_URL,
+            { dbName: 'ImagineFusionAI', bufferCommands: false })
+    cached.conn = await cached.promise;
 }
